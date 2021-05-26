@@ -1,0 +1,56 @@
+﻿@model PawnshopUnchuMVC.Models.tblGarment
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@if (TempData["Prueba"] != null)
+{
+    <div class="alert alert-success">El producto se eliminó satisfactoriamente</div>
+}
+
+@using (Html.BeginForm("AdminDeleteProduct2", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container-fluid" style="margin: auto;">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h2 style="position: relative;text-align: center;">Eliminar Producto</h2>
+        <form data-toggle="validator" role="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nomServ" class="control-label">Nombre del Producto</label>
+                        @Html.EditorFor(model => model.gmtName, new { htmlAttributes = new { @class = "form-control", @readonly="readonly" } })
+                        @Html.ValidationMessageFor(model => model.gmtName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="control-label">Tipo</label>
+                        @Html.EditorFor(model => model.gmtType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.gmtType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="control-label">Precio</label>
+                        @Html.EditorFor(model => model.gmtPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.gmtPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="display: flex;justify-content: center;height: 35vh;flex-wrap:wrap;">                        
+                        <img style="height: 34vh;" class="img-fluid" src="@Url.Action("getImage","User")" />
+                    </div>
+                    <div class="form-group">
+                        <label for="condition" class="control-label">Condición</label>
+                        @Html.EditorFor(model => model.gmtCondition, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.gmtCondition, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Eliminar Producto</button>
+            </div>
+        </form>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

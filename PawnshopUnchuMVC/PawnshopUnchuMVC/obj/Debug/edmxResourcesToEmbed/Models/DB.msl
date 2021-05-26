@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBPawnshopModelStoreContainer" CdmEntityContainer="DBPawnshopEntitiesConection">
+    <EntitySetMapping Name="tblBusiness">
+      <EntityTypeMapping TypeName="DBPawnshopModel.tblBusiness">
+        <MappingFragment StoreEntitySet="tblBusiness">
+          <ScalarProperty Name="bsID" ColumnName="bsID" />
+          <ScalarProperty Name="bsName" ColumnName="bsName" />
+          <ScalarProperty Name="bsLocation" ColumnName="bsLocation" />
+          <ScalarProperty Name="bsEmail" ColumnName="bsEmail" />
+          <ScalarProperty Name="bsBranch" ColumnName="bsBranch" />
+          <ScalarProperty Name="bsPhone" ColumnName="bsPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGarment">
+      <EntityTypeMapping TypeName="DBPawnshopModel.tblGarment">
+        <MappingFragment StoreEntitySet="tblGarment">
+          <ScalarProperty Name="gmtImage" ColumnName="gmtImage" />
+          <ScalarProperty Name="gmtID" ColumnName="gmtID" />
+          <ScalarProperty Name="gmtName" ColumnName="gmtName" />
+          <ScalarProperty Name="gmtType" ColumnName="gmtType" />
+          <ScalarProperty Name="gmtCondition" ColumnName="gmtCondition" />
+          <ScalarProperty Name="gmtPrice" ColumnName="gmtPrice" />
+          <ScalarProperty Name="usID" ColumnName="usID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblInfoUser">
+      <EntityTypeMapping TypeName="DBPawnshopModel.tblInfoUser">
+        <MappingFragment StoreEntitySet="tblInfoUser">
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="usInfFirstName" ColumnName="usInfFirstName" />
+          <ScalarProperty Name="usInfLastNameF" ColumnName="usInfLastNameF" />
+          <ScalarProperty Name="usInfLastNameM" ColumnName="usInfLastNameM" />
+          <ScalarProperty Name="usInfPhone" ColumnName="usInfPhone" />
+          <ScalarProperty Name="usID" ColumnName="usID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblServices">
+      <EntityTypeMapping TypeName="DBPawnshopModel.tblServices">
+        <MappingFragment StoreEntitySet="tblServices">
+          <ScalarProperty Name="servID" ColumnName="servID" />
+          <ScalarProperty Name="servName" ColumnName="servName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUser">
+      <EntityTypeMapping TypeName="DBPawnshopModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+          <ScalarProperty Name="userKey" ColumnName="userKey" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getUserData" FunctionName="DBPawnshopModel.Store.getUserData" />
+    <FunctionImportMapping FunctionImportName="sp_getUserData" FunctionName="DBPawnshopModel.Store.getUserData" />
+    <FunctionImportMapping FunctionImportName="setUserData" FunctionName="DBPawnshopModel.Store.setUserData" />
+    <FunctionImportMapping FunctionImportName="sp_GetUserLogin" FunctionName="DBPawnshopModel.Store.sp_GetUserLogin" />
+    <FunctionImportMapping FunctionImportName="sp_GetUserLogin1" FunctionName="DBPawnshopModel.Store.sp_GetUserLogin" />
+    <EntitySetMapping Name="tblSolicitude">
+      <EntityTypeMapping TypeName="DBPawnshopModel.tblSolicitude">
+        <MappingFragment StoreEntitySet="tblSolicitude">
+          <ScalarProperty Name="solEstado" ColumnName="solEstado" />
+          <ScalarProperty Name="solHora" ColumnName="solHora" />
+          <ScalarProperty Name="solFecha" ColumnName="solFecha" />
+          <ScalarProperty Name="solProdName" ColumnName="solProdName" />
+          <ScalarProperty Name="solUserID" ColumnName="solUserID" />
+          <ScalarProperty Name="solID" ColumnName="solID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="deleteBus" FunctionName="DBPawnshopModel.Store.deleteBus" />
+    <FunctionImportMapping FunctionImportName="deleteGarment" FunctionName="DBPawnshopModel.Store.deleteGarment" />
+    <FunctionImportMapping FunctionImportName="deleteServ" FunctionName="DBPawnshopModel.Store.deleteServ" />
+    <FunctionImportMapping FunctionImportName="deleteSolicitude" FunctionName="DBPawnshopModel.Store.deleteSolicitude" />
+    <FunctionImportMapping FunctionImportName="getDataBus" FunctionName="DBPawnshopModel.Store.getDataBus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getDataBus_Result">
+          <ScalarProperty Name="bsID" ColumnName="bsID" />
+          <ScalarProperty Name="bsName" ColumnName="bsName" />
+          <ScalarProperty Name="bsLocation" ColumnName="bsLocation" />
+          <ScalarProperty Name="bsEmail" ColumnName="bsEmail" />
+          <ScalarProperty Name="bsBranch" ColumnName="bsBranch" />
+          <ScalarProperty Name="bsPhone" ColumnName="bsPhone" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getDataGar" FunctionName="DBPawnshopModel.Store.getDataGar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getDataGar_Result">
+          <ScalarProperty Name="gmtID" ColumnName="gmtID" />
+          <ScalarProperty Name="gmtName" ColumnName="gmtName" />
+          <ScalarProperty Name="gmtType" ColumnName="gmtType" />
+          <ScalarProperty Name="gmtCondition" ColumnName="gmtCondition" />
+          <ScalarProperty Name="gmtPrice" ColumnName="gmtPrice" />
+          <ScalarProperty Name="usID" ColumnName="usID" />
+          <ScalarProperty Name="gmtImage" ColumnName="gmtImage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getDataServ" FunctionName="DBPawnshopModel.Store.getDataServ">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getDataServ_Result">
+          <ScalarProperty Name="servID" ColumnName="servID" />
+          <ScalarProperty Name="servName" ColumnName="servName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getDataSolicitude" FunctionName="DBPawnshopModel.Store.getDataSolicitude">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getDataSolicitude_Result">
+          <ScalarProperty Name="solID" ColumnName="solID" />
+          <ScalarProperty Name="solUserID" ColumnName="solUserID" />
+          <ScalarProperty Name="solProdName" ColumnName="solProdName" />
+          <ScalarProperty Name="solFecha" ColumnName="solFecha" />
+          <ScalarProperty Name="solHora" ColumnName="solHora" />
+          <ScalarProperty Name="solEstado" ColumnName="solEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getDatosUserxSoli" FunctionName="DBPawnshopModel.Store.getDatosUserxSoli">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getDatosUserxSoli_Result">
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="usInfFirstName" ColumnName="usInfFirstName" />
+          <ScalarProperty Name="usInfLastNameF" ColumnName="usInfLastNameF" />
+          <ScalarProperty Name="usInfLastNameM" ColumnName="usInfLastNameM" />
+          <ScalarProperty Name="usInfPhone" ColumnName="usInfPhone" />
+          <ScalarProperty Name="usID" ColumnName="usID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getIDUserxSoli" FunctionName="DBPawnshopModel.Store.getIDUserxSoli" />
+    <FunctionImportMapping FunctionImportName="getNewSolicitudes" FunctionName="DBPawnshopModel.Store.getNewSolicitudes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getNewSolicitudes_Result">
+          <ScalarProperty Name="solID" ColumnName="solID" />
+          <ScalarProperty Name="solUserID" ColumnName="solUserID" />
+          <ScalarProperty Name="solProdName" ColumnName="solProdName" />
+          <ScalarProperty Name="solFecha" ColumnName="solFecha" />
+          <ScalarProperty Name="solHora" ColumnName="solHora" />
+          <ScalarProperty Name="solEstado" ColumnName="solEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getProductData" FunctionName="DBPawnshopModel.Store.getProductData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getProductData_Result">
+          <ScalarProperty Name="gmtID" ColumnName="gmtID" />
+          <ScalarProperty Name="gmtName" ColumnName="gmtName" />
+          <ScalarProperty Name="gmtType" ColumnName="gmtType" />
+          <ScalarProperty Name="gmtCondition" ColumnName="gmtCondition" />
+          <ScalarProperty Name="gmtPrice" ColumnName="gmtPrice" />
+          <ScalarProperty Name="usID" ColumnName="usID" />
+          <ScalarProperty Name="gmtImage" ColumnName="gmtImage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getProducts" FunctionName="DBPawnshopModel.Store.getProducts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getProducts_Result">
+          <ScalarProperty Name="gmtID" ColumnName="gmtID" />
+          <ScalarProperty Name="gmtName" ColumnName="gmtName" />
+          <ScalarProperty Name="gmtType" ColumnName="gmtType" />
+          <ScalarProperty Name="gmtCondition" ColumnName="gmtCondition" />
+          <ScalarProperty Name="gmtPrice" ColumnName="gmtPrice" />
+          <ScalarProperty Name="usID" ColumnName="usID" />
+          <ScalarProperty Name="gmtImage" ColumnName="gmtImage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getProducXUser" FunctionName="DBPawnshopModel.Store.getProducXUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getProducXUser_Result">
+          <ScalarProperty Name="gmtID" ColumnName="gmtID" />
+          <ScalarProperty Name="gmtName" ColumnName="gmtName" />
+          <ScalarProperty Name="gmtType" ColumnName="gmtType" />
+          <ScalarProperty Name="gmtCondition" ColumnName="gmtCondition" />
+          <ScalarProperty Name="gmtPrice" ColumnName="gmtPrice" />
+          <ScalarProperty Name="usID" ColumnName="usID" />
+          <ScalarProperty Name="gmtImage" ColumnName="gmtImage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getServices" FunctionName="DBPawnshopModel.Store.getServices">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getServices_Result">
+          <ScalarProperty Name="servID" ColumnName="servID" />
+          <ScalarProperty Name="servName" ColumnName="servName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getSolicitudeData" FunctionName="DBPawnshopModel.Store.getSolicitudeData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getSolicitudeData_Result">
+          <ScalarProperty Name="solID" ColumnName="solID" />
+          <ScalarProperty Name="solUserID" ColumnName="solUserID" />
+          <ScalarProperty Name="solProdName" ColumnName="solProdName" />
+          <ScalarProperty Name="solFecha" ColumnName="solFecha" />
+          <ScalarProperty Name="solHora" ColumnName="solHora" />
+          <ScalarProperty Name="solEstado" ColumnName="solEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getSolicitudexUser" FunctionName="DBPawnshopModel.Store.getSolicitudexUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getSolicitudexUser_Result">
+          <ScalarProperty Name="solID" ColumnName="solID" />
+          <ScalarProperty Name="solUserID" ColumnName="solUserID" />
+          <ScalarProperty Name="solProdName" ColumnName="solProdName" />
+          <ScalarProperty Name="solFecha" ColumnName="solFecha" />
+          <ScalarProperty Name="solHora" ColumnName="solHora" />
+          <ScalarProperty Name="solEstado" ColumnName="solEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="setGarmet" FunctionName="DBPawnshopModel.Store.setGarmet" />
+    <FunctionImportMapping FunctionImportName="setInfoBs" FunctionName="DBPawnshopModel.Store.setInfoBs" />
+    <FunctionImportMapping FunctionImportName="setInfoUser" FunctionName="DBPawnshopModel.Store.setInfoUser" />
+    <FunctionImportMapping FunctionImportName="setServName" FunctionName="DBPawnshopModel.Store.setServName" />
+    <FunctionImportMapping FunctionImportName="setSolicitude" FunctionName="DBPawnshopModel.Store.setSolicitude" />
+    <FunctionImportMapping FunctionImportName="sp_validarInfo" FunctionName="DBPawnshopModel.Store.sp_validarInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.sp_validarInfo_Result">
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="usInfFirstName" ColumnName="usInfFirstName" />
+          <ScalarProperty Name="usInfLastNameF" ColumnName="usInfLastNameF" />
+          <ScalarProperty Name="usInfLastNameM" ColumnName="usInfLastNameM" />
+          <ScalarProperty Name="usInfPhone" ColumnName="usInfPhone" />
+          <ScalarProperty Name="usID" ColumnName="usID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="updateGarmetData" FunctionName="DBPawnshopModel.Store.updateGarmetData" />
+    <FunctionImportMapping FunctionImportName="updateInfoData" FunctionName="DBPawnshopModel.Store.updateInfoData" />
+    <FunctionImportMapping FunctionImportName="updateInfoDataUser" FunctionName="DBPawnshopModel.Store.updateInfoDataUser" />
+    <FunctionImportMapping FunctionImportName="updateServData" FunctionName="DBPawnshopModel.Store.updateServData" />
+    <FunctionImportMapping FunctionImportName="updateSoliData" FunctionName="DBPawnshopModel.Store.updateSoliData" />
+    <FunctionImportMapping FunctionImportName="cancelSolicitud" FunctionName="DBPawnshopModel.Store.cancelSolicitud" />
+    <FunctionImportMapping FunctionImportName="confirmSolicitud" FunctionName="DBPawnshopModel.Store.confirmSolicitud" />
+    <FunctionImportMapping FunctionImportName="getDatasSoli" FunctionName="DBPawnshopModel.Store.getDatasSoli">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getDatasSoli_Result">
+          <ScalarProperty Name="solID" ColumnName="solID" />
+          <ScalarProperty Name="solUserID" ColumnName="solUserID" />
+          <ScalarProperty Name="solProdName" ColumnName="solProdName" />
+          <ScalarProperty Name="solFecha" ColumnName="solFecha" />
+          <ScalarProperty Name="solHora" ColumnName="solHora" />
+          <ScalarProperty Name="solEstado" ColumnName="solEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getIdProdxSoli" FunctionName="DBPawnshopModel.Store.getIdProdxSoli">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getIdProdxSoli_Result">
+          <ScalarProperty Name="gmtID" ColumnName="gmtID" />
+          <ScalarProperty Name="gmtName" ColumnName="gmtName" />
+          <ScalarProperty Name="gmtType" ColumnName="gmtType" />
+          <ScalarProperty Name="gmtCondition" ColumnName="gmtCondition" />
+          <ScalarProperty Name="gmtPrice" ColumnName="gmtPrice" />
+          <ScalarProperty Name="usID" ColumnName="usID" />
+          <ScalarProperty Name="gmtImage" ColumnName="gmtImage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getIDUserxSolic" FunctionName="DBPawnshopModel.Store.getIDUserxSolic">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getIDUserxSolic_Result">
+          <ScalarProperty Name="solID" ColumnName="solID" />
+          <ScalarProperty Name="solUserID" ColumnName="solUserID" />
+          <ScalarProperty Name="solProdName" ColumnName="solProdName" />
+          <ScalarProperty Name="solFecha" ColumnName="solFecha" />
+          <ScalarProperty Name="solHora" ColumnName="solHora" />
+          <ScalarProperty Name="solEstado" ColumnName="solEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getListSolicitudes" FunctionName="DBPawnshopModel.Store.getListSolicitudes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.getListSolicitudes_Result">
+          <ScalarProperty Name="solID" ColumnName="solID" />
+          <ScalarProperty Name="solUserID" ColumnName="solUserID" />
+          <ScalarProperty Name="solProdName" ColumnName="solProdName" />
+          <ScalarProperty Name="solFecha" ColumnName="solFecha" />
+          <ScalarProperty Name="solHora" ColumnName="solHora" />
+          <ScalarProperty Name="solEstado" ColumnName="solEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UserLastMessages" FunctionName="DBPawnshopModel.Store.UserLastMessages">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.UserLastMessages_Result">
+          <ScalarProperty Name="solID" ColumnName="solID" />
+          <ScalarProperty Name="solUserID" ColumnName="solUserID" />
+          <ScalarProperty Name="solProdName" ColumnName="solProdName" />
+          <ScalarProperty Name="solFecha" ColumnName="solFecha" />
+          <ScalarProperty Name="solHora" ColumnName="solHora" />
+          <ScalarProperty Name="solEstado" ColumnName="solEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DBPawnshopModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram1" FunctionName="DBPawnshopModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram1" FunctionName="DBPawnshopModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram1" FunctionName="DBPawnshopModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition1" FunctionName="DBPawnshopModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.sp_helpdiagramdefinition1_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams1" FunctionName="DBPawnshopModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBPawnshopModel.sp_helpdiagrams1_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="DBPawnshopModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="DBPawnshopModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

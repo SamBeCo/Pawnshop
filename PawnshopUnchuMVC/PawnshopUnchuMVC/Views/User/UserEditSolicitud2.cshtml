@@ -1,0 +1,41 @@
+﻿@model PawnshopUnchuMVC.Models.tblSolicitude
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@if (TempData["Prueba"] != null)
+{
+    <div class="alert alert-success">La solicitud se editó satisfactoriamente</div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container-fluid" style="margin: auto;">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h2 style="position: relative;text-align: center;">Editar Solicitud</h2>
+        <form data-toggle="validator" role="form">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="img" class="control-label">Fecha de revisión</label>                        
+                        @Html.EditorFor(model => model.solFecha, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.solFecha, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="condition" class="control-label">Hora de revisión</label>
+                        @Html.EditorFor(model => model.solHora, new { htmlAttributes = new { @class = "form-control", @type = "time", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.solHora, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Editar Producto</button>
+            </div>
+        </form>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

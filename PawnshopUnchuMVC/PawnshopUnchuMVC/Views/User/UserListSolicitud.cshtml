@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PawnshopUnchuMVC.Models.tblSolicitude>
+
+@{
+    ViewBag.Title = "UserListSolicitud";
+}
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="container-fluid" style="margin: auto;">
+    <h2 style="text-align: center;">Lista de Solicitudes</h2>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Solicitudes
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Producto</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Estado de la Solicitud</th>                            
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre del Producto</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Estado de la Solicitud</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.solProdName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.solFecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.solHora)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.solEstado)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

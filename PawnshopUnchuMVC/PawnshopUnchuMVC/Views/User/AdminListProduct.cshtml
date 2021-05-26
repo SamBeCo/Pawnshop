@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PawnshopUnchuMVC.Models.tblGarment>
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="container-fluid" style="margin: auto;">
+    <h2 style="text-align: center;">Lista de Productos</h2>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Productos
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Condición</th>
+                            <th>Precio</th>
+                            <th>Imagen</th>
+                        </tr>                       
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Condición</th>
+                            <th>Precio</th>
+                            <th>Imagen</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.gmtName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.gmtType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.gmtCondition)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.gmtPrice)
+                                </td>
+                                <td style="display: flex;justify-content: center;">
+                                    <img style="height: 10vh;" class="img-fluid" src="@Url.Action("getImageGar","User",new{id=item.gmtID})" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

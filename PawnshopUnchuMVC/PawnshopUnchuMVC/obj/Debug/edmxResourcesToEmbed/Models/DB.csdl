@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBPawnshopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblBusiness">
+    <Key>
+      <PropertyRef Name="bsID" />
+    </Key>
+    <Property Name="bsID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bsName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bsLocation" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bsEmail" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bsBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bsPhone" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblGarment">
+    <Key>
+      <PropertyRef Name="gmtID" />
+    </Key>
+    <Property Name="gmtID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gmtName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gmtType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gmtCondition" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gmtPrice" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="usID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gmtImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblInfoUser">
+    <Key>
+      <PropertyRef Name="DNI" />
+    </Key>
+    <Property Name="DNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usInfFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usInfLastNameF" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usInfLastNameM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usInfPhone" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK__tblInfoUse__usID__1273C1CD" FromRole="tblInfoUser" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblServices">
+    <Key>
+      <PropertyRef Name="servID" />
+    </Key>
+    <Property Name="servID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="servName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="userEmail" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userKey" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userType" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblInfoUser" Relationship="Self.FK__tblInfoUse__usID__1273C1CD" FromRole="tblUser" ToRole="tblInfoUser" />
+  </EntityType>
+  <Association Name="FK__tblInfoUse__usID__1273C1CD">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblInfoUser" Type="Self.tblInfoUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblInfoUser">
+        <PropertyRef Name="usID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBPawnshopEntitiesConection" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblBusiness" EntityType="Self.tblBusiness" />
+    <EntitySet Name="tblGarment" EntityType="Self.tblGarment" />
+    <EntitySet Name="tblInfoUser" EntityType="Self.tblInfoUser" />
+    <EntitySet Name="tblServices" EntityType="Self.tblServices" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK__tblInfoUse__usID__1273C1CD" Association="Self.FK__tblInfoUse__usID__1273C1CD">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblInfoUser" EntitySet="tblInfoUser" />
+    </AssociationSet>
+    <FunctionImport Name="getUserData" EntitySet="tblUser" ReturnType="Collection(DBPawnshopModel.tblUser)" />
+    <FunctionImport Name="sp_getUserData" EntitySet="tblUser" ReturnType="Collection(DBPawnshopModel.tblUser)" />
+    <FunctionImport Name="setUserData" EntitySet="tblUser" ReturnType="Collection(DBPawnshopModel.tblUser)">
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="key" Mode="In" Type="String" />
+      <Parameter Name="type" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetUserLogin" EntitySet="tblUser" ReturnType="Collection(DBPawnshopModel.tblUser)">
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="key" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DBPawnshopModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DBPawnshopModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="sp_GetUserLogin1" EntitySet="tblUser" ReturnType="Collection(DBPawnshopModel.tblUser)">
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="key" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="tblSolicitude" EntityType="DBPawnshopModel.tblSolicitude" />
+    <FunctionImport Name="deleteBus">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="deleteGarment">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="deleteServ">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="deleteSolicitude">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getDataBus" ReturnType="Collection(DBPawnshopModel.getDataBus_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getDataGar" ReturnType="Collection(DBPawnshopModel.getDataGar_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getDataServ" ReturnType="Collection(DBPawnshopModel.getDataServ_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getDataSolicitude" ReturnType="Collection(DBPawnshopModel.getDataSolicitude_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getDatosUserxSoli" ReturnType="Collection(DBPawnshopModel.getDatosUserxSoli_Result)">
+      <Parameter Name="ids" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getIDUserxSoli" ReturnType="Collection(String)">
+      <Parameter Name="ids" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getNewSolicitudes" ReturnType="Collection(DBPawnshopModel.getNewSolicitudes_Result)" />
+    <FunctionImport Name="getProductData" ReturnType="Collection(DBPawnshopModel.getProductData_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getProducts" ReturnType="Collection(DBPawnshopModel.getProducts_Result)" />
+    <FunctionImport Name="getProducXUser" ReturnType="Collection(DBPawnshopModel.getProducXUser_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getServices" ReturnType="Collection(DBPawnshopModel.getServices_Result)" />
+    <FunctionImport Name="getSolicitudeData" ReturnType="Collection(DBPawnshopModel.getSolicitudeData_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getSolicitudexUser" ReturnType="Collection(DBPawnshopModel.getSolicitudexUser_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="setGarmet">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="tipo" Mode="In" Type="String" />
+      <Parameter Name="condicion" Mode="In" Type="String" />
+      <Parameter Name="precio" Mode="In" Type="Decimal" />
+      <Parameter Name="user" Mode="In" Type="String" />
+      <Parameter Name="img" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="setInfoBs">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="ubicacion" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="rama" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="setInfoUser">
+      <Parameter Name="dni" Mode="In" Type="String" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="lstfname" Mode="In" Type="String" />
+      <Parameter Name="lstmname" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="setServName">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="setSolicitude">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="idGar" Mode="In" Type="String" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="hora" Mode="In" Type="Time" />
+    </FunctionImport>
+    <FunctionImport Name="sp_validarInfo" ReturnType="Collection(DBPawnshopModel.sp_validarInfo_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateGarmetData">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="tipo" Mode="In" Type="String" />
+      <Parameter Name="condicion" Mode="In" Type="String" />
+      <Parameter Name="precio" Mode="In" Type="Decimal" />
+      <Parameter Name="user" Mode="In" Type="String" />
+      <Parameter Name="img" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="updateInfoData">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="ubicacion" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="rama" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateInfoDataUser">
+      <Parameter Name="dni" Mode="In" Type="String" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="lstfname" Mode="In" Type="String" />
+      <Parameter Name="lstmname" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateServData">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateSoliData">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="hora" Mode="In" Type="Time" />
+    </FunctionImport>
+    <FunctionImport Name="cancelSolicitud">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="confirmSolicitud">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getDatasSoli" ReturnType="Collection(DBPawnshopModel.getDatasSoli_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getIdProdxSoli" ReturnType="Collection(DBPawnshopModel.getIdProdxSoli_Result)">
+      <Parameter Name="usID" Mode="In" Type="String" />
+      <Parameter Name="gmtName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getIDUserxSolic" ReturnType="Collection(DBPawnshopModel.getIDUserxSolic_Result)">
+      <Parameter Name="ids" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getListSolicitudes" ReturnType="Collection(DBPawnshopModel.getListSolicitudes_Result)" />
+    <FunctionImport Name="UserLastMessages" ReturnType="Collection(DBPawnshopModel.UserLastMessages_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="sysdiagrams" EntityType="DBPawnshopModel.sysdiagrams" />
+    <FunctionImport Name="sp_alterdiagram1">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram1">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram1">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition1" ReturnType="Collection(DBPawnshopModel.sp_helpdiagramdefinition1_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams1" ReturnType="Collection(DBPawnshopModel.sp_helpdiagrams1_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram1">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams1" />
+  </EntityContainer>
+  <ComplexType Name="getUserData_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="userEmail" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="userKey" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="userType" Nullable="false" MaxLength="120" />
+  </ComplexType>
+  <ComplexType Name="sp_GetUserLogin_Result">
+    <Property Type="String" Name="userEmail" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="userKey" Nullable="false" MaxLength="120" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="tblSolicitude">
+    <Key>
+      <PropertyRef Name="solID" />
+    </Key>
+    <Property Name="solID" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="solUserID" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="solProdName" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="solFecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="solHora" Type="Time" Nullable="false" Precision="0" />
+    <Property Name="solEstado" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="getDataBus_Result">
+    <Property Type="String" Name="bsID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="bsName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="bsLocation" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="bsEmail" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="bsBranch" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="bsPhone" Nullable="false" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="getDataGar_Result">
+    <Property Type="String" Name="gmtID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="gmtName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="gmtType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="gmtCondition" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="gmtPrice" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="String" Name="usID" Nullable="false" MaxLength="8" />
+    <Property Type="Binary" Name="gmtImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="getDataServ_Result">
+    <Property Type="String" Name="servID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="servName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getDataSolicitude_Result">
+    <Property Type="String" Name="solID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solUserID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solProdName" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="solFecha" Nullable="false" />
+    <Property Type="Time" Name="solHora" Nullable="false" />
+    <Property Type="String" Name="solEstado" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="getDatosUserxSoli_Result">
+    <Property Type="String" Name="DNI" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="usInfFirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="usInfLastNameF" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="usInfLastNameM" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="usInfPhone" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="usID" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="getNewSolicitudes_Result">
+    <Property Type="String" Name="solID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solUserID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solProdName" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="solFecha" Nullable="false" />
+    <Property Type="Time" Name="solHora" Nullable="false" />
+    <Property Type="String" Name="solEstado" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="getProductData_Result">
+    <Property Type="String" Name="gmtID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="gmtName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="gmtType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="gmtCondition" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="gmtPrice" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="String" Name="usID" Nullable="false" MaxLength="8" />
+    <Property Type="Binary" Name="gmtImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="getProducts_Result">
+    <Property Type="String" Name="gmtID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="gmtName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="gmtType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="gmtCondition" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="gmtPrice" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="String" Name="usID" Nullable="false" MaxLength="8" />
+    <Property Type="Binary" Name="gmtImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="getProducXUser_Result">
+    <Property Type="String" Name="gmtID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="gmtName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="gmtType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="gmtCondition" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="gmtPrice" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="String" Name="usID" Nullable="false" MaxLength="8" />
+    <Property Type="Binary" Name="gmtImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="getServices_Result">
+    <Property Type="String" Name="servID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="servName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getSolicitudeData_Result">
+    <Property Type="String" Name="solID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solUserID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solProdName" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="solFecha" Nullable="false" />
+    <Property Type="Time" Name="solHora" Nullable="false" />
+    <Property Type="String" Name="solEstado" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="getSolicitudexUser_Result">
+    <Property Type="String" Name="solID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solUserID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solProdName" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="solFecha" Nullable="false" />
+    <Property Type="Time" Name="solHora" Nullable="false" />
+    <Property Type="String" Name="solEstado" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="sp_validarInfo_Result">
+    <Property Type="String" Name="DNI" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="usInfFirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="usInfLastNameF" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="usInfLastNameM" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="usInfPhone" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="usID" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="getDatasSoli_Result">
+    <Property Type="String" Name="solID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solUserID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solProdName" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="solFecha" Nullable="false" />
+    <Property Type="Time" Name="solHora" Nullable="false" />
+    <Property Type="String" Name="solEstado" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="getIdProdxSoli_Result">
+    <Property Type="String" Name="gmtID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="gmtName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="gmtType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="gmtCondition" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="gmtPrice" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="String" Name="usID" Nullable="false" MaxLength="8" />
+    <Property Type="Binary" Name="gmtImage" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="getIDUserxSolic_Result">
+    <Property Type="String" Name="solID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solUserID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solProdName" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="solFecha" Nullable="false" />
+    <Property Type="Time" Name="solHora" Nullable="false" />
+    <Property Type="String" Name="solEstado" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="getListSolicitudes_Result">
+    <Property Type="String" Name="solID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solUserID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solProdName" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="solFecha" Nullable="false" />
+    <Property Type="Time" Name="solHora" Nullable="false" />
+    <Property Type="String" Name="solEstado" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="UserLastMessages_Result">
+    <Property Type="String" Name="solID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solUserID" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="solProdName" Nullable="false" MaxLength="120" />
+    <Property Type="DateTime" Name="solFecha" Nullable="false" />
+    <Property Type="Time" Name="solHora" Nullable="false" />
+    <Property Type="String" Name="solEstado" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition1_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams1_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

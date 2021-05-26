@@ -1,0 +1,43 @@
+﻿@model PawnshopUnchuMVC.Models.tblGarment
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@if (@ViewData["Soliestado"].ToString() == "Cancelado")
+{
+    @ViewData["Soliestado"]
+    <div class="container-fluid" style="margin: auto;">
+        <h2 style="position: relative;text-align: center;">Mensaje de Confirmación</h2>
+        <form data-toggle="validator" role="form">
+            <label>@ViewData["Username"] @ViewData["LstnameF"] @ViewData["LstnameM"]</label>
+            <label>
+                Esperamos que tenga un buen día, en nombre de la empresa: "Créditos y Negociaciones César", le hablamos, para informarle, que la solicitud de revisión del producto @ViewData["Prodname"],
+                fue cancelada, esperamos su comprensión.
+            </label>
+            <label>Atte:"Créditos y Negociaciones César"</label>
+            <div class="form-group">
+                <input type="submit" value="Cargar Datos" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+}
+
+@if (@ViewData["Soliestado"].ToString() == "Confirmado")
+{
+    @ViewData["Soliestado"]
+    <div class="container-fluid" style="margin: auto;">
+        <h2 style="position: relative;text-align: center;">Mensaje de Confirmación</h2>
+        <form data-toggle="validator" role="form">
+            <label>@ViewData["Username"] @ViewData["LstnameF"] @ViewData["LstnameM"]</label>
+            <label>
+                Esperamos que tenga un buen día, en nombre de la empresa: "Créditos y Negociaciones César", le hablamos, para informarle, que la solicitud de revisión del producto @ViewData["Prodname"],
+                fue confirmada, esperamos su próxima visita, a la hora acordada.
+            </label>
+            <label>Atte:"Créditos y Negociaciones César"</label>
+            <div class="form-group">
+                <input type="submit" value="Cargar Datos" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+}

@@ -1,0 +1,38 @@
+﻿@model PawnshopUnchuMVC.Models.tblServices
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (TempData["Prueba"] != null)
+{
+    <div class="alert alert-danger">El servicio se actualizó satisfactoriamente</div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid" style="margin: auto;">
+        <h2 style="position: relative;text-align: center;">Eliminar Servicio</h2>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.servID)
+        <form data-toggle="validator" role="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nombre">Nombre del Servicio</label>
+                        @Html.EditorFor(model => model.servName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.servName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Eliminar Servicio</button>
+            </div>
+        </form>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

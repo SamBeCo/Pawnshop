@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Empeños César</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <p class="navbar-brand">@Html.ActionLink("Créditos y Negociaciones César", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</p>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="nav-flex flex-grow-1">
+                        <li class="nav-item ftm-li"><p class="nav-link text-dark">@Html.ActionLink("Inicio", "Index", "Home")</p></li>
+                        <li class="nav-item ftm-li"><p class="nav-link text-dark">@Html.ActionLink("Acerca de Nosotros", "About", "Home")</p></li>
+                        <li class="nav-item ftm-li"><p class="nav-link text-dark">@Html.ActionLink("Servicios", "Service", "Home")</p></li>
+                        <li class="nav-item ftm-li"><p class="nav-link text-dark">@Html.ActionLink("Iniciar Sesión", "Login", "Home")</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>       
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - Créditos y Negociaciones César</p>
+        </div>        
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")    
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

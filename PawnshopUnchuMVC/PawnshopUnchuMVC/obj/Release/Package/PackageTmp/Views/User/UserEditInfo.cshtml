@@ -1,0 +1,72 @@
+﻿@model PawnshopUnchuMVC.Models.tblInfoUser
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@if (TempData["Prueba"] != null)
+{
+    <div class="alert alert-success">La información se editó satisfactoriamente</div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container-fluid" style="margin: auto;" id="contenedor">
+        <h2 style="position: relative;text-align: center;">Registrar Información</h2>
+        <form data-toggle="validator" role="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nomServ" class="control-label">DNI</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DNI, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.DNI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nomServ" class="control-label">Nombre</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.usInfFirstName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                            @Html.ValidationMessageFor(model => model.usInfFirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nomServ" class="control-label">Apellido Paterno</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.usInfLastNameF, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                            @Html.ValidationMessageFor(model => model.usInfLastNameF, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nomServ" class="control-label">Apellido Materno</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.usInfLastNameM, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                            @Html.ValidationMessageFor(model => model.usInfLastNameM, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nomServ" class="control-label">Celular - Telefono</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.usInfPhone, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                            @Html.ValidationMessageFor(model => model.usInfPhone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Registrar Información" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

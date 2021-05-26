@@ -1,0 +1,70 @@
+﻿@model IEnumerable<PawnshopUnchuMVC.Models.tblSolicitude>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (TempData["Prueba"] != null)
+{
+    <div class="alert alert-danger">La solicitud se canceló</div>
+}
+@if (TempData["Pruebas"] != null)
+{
+    <div class="alert alert-success">La solicitud se confirmó</div>
+}
+<div class="container-fluid" style="margin: auto;">
+    <h2 style="text-align: center;">Lista de Solicitudes Nuevas</h2>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Solicitudes
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID del usuario</th>
+                            <th>Nombre del producto</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID del usuario</th>
+                            <th>Nombre del producto</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.solUserID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.solProdName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.solFecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.solHora)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detalles del usuario", "DetailsUser", new { id = item.solID }) |
+                                    @Html.ActionLink("Detalles del producto", "DetailsProduct", new { id = item.solID }) |
+                                    @Html.ActionLink("Cancelar", "CancelSolicitude", new { id = item.solID }) |
+                                    @Html.ActionLink("Confirmar", "ConfirmSolicitude", new { id = item.solID })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
