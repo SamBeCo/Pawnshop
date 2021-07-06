@@ -5,6 +5,10 @@
     z-index: 2;
 }
 
+p{
+    margin:0;
+}
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -320,4 +324,44 @@ body {
 .font-verde {
     font-size: 2vh;
     text-align: center;
+}
+
+.menu_text{
+    color:white;
+    text-decoration:none;
+}
+.menu_text:hover {
+    font-weight:bold;
+    color: #67f367;    
+    text-decoration:none;
+}
+.logo_title {
+    padding-left:10px;
+    color: white;
+    text-decoration: none;
+    border-left: 4px solid #18d26e;
+}
+.logo_title:hover{
+    text-decoration: none;
+    color:white;
+}
+.contenedor-footer {
+    width: 100%;
+    display: flex;
+    background-color: dimgray;
+    color: white;
+    font-weight:bold;
+    justify-content: center;
+    margin: 0;
+}
+.contenedor-footer p{
+    margin:0;
+}
+.titulo-general {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.name-emp {
+    color: #278427;
 }

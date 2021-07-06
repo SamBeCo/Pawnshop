@@ -1,46 +1,157 @@
-﻿<!DOCTYPE html>
+﻿@model PawnshopUnchuMVC.Models.tblUser
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Empeños César</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/login.css">
+    <!--Jquery-->
 </head>
 <body>
+    @if (TempData["Prueba"] != null)
+    {
+        <script type="text/javascript">
+            setInterval(ocultar, 5000);
+            function ocultar() {
+                var pruebita = document.getElementById('error');
+                pruebita.style.display= "none";
+            }
+        </script>
+        <div id="error" class="alert alert-danger" style="position:absolute;z-index:15">El usuario no existe, favor de ingresar un correo y contraseña adecuado.</div>
+    }
     <header>
-        <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <p class="navbar-brand">@Html.ActionLink("Créditos y Negociaciones César", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</p>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="nav-flex flex-grow-1">
-                        <li class="nav-item ftm-li"><p class="nav-link text-dark">@Html.ActionLink("Inicio", "Index", "Home")</p></li>
-                        <li class="nav-item ftm-li"><p class="nav-link text-dark">@Html.ActionLink("Acerca de Nosotros", "About", "Home")</p></li>
-                        <li class="nav-item ftm-li"><p class="nav-link text-dark">@Html.ActionLink("Servicios", "Service", "Home")</p></li>
-                        <li class="nav-item ftm-li"><p class="nav-link text-dark">@Html.ActionLink("Iniciar Sesión", "Login", "Home")</p></li>
-                    </ul>
-                </div>
+        <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light" style="position: absolute;width: 100%;background: rgba(0, 0, 0, 0.5);">
+
+            <p class="navbar-brand" style="margin-left: 60px;margin-bottom: 0;">@Html.ActionLink("CREDITOS Y NEGOCIACIONES CESAR", "Index", "Home", new { area = "" }, new { @class = "logo_title" })</p>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" style="margin-right: 60px;">
+                <ul class="nav-flex flex-grow-1">
+                    <li class="nav-item ftm-li"><p class="nav-link" style="margin:0;">@Html.ActionLink("Inicio", "Index", "Home", new { @class = "menu_text" })</p></li>
+                    <li class="nav-item ftm-li"><p class="nav-link" style="margin:0;">@Html.ActionLink("Acerca de Nosotros", "About", "Home", new { @class = "menu_text" })</p></li>
+                    <li class="nav-item ftm-li"><p class="nav-link" style="margin:0;">@Html.ActionLink("Servicios", "Service", "Home", new { @class = "menu_text" })</p></li>
+                    <li class="nav-item ftm-li"><p class="nav-link" style="margin:0;"> <a class="menu_text" href="#" data-toggle="modal" data-target="#logoutModal">Iniciar sesión</a></p></li>
+                </ul>
             </div>
+
         </div>
+
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div>
+        <main role="main">
             @RenderBody()
-        </main>       
+        </main>
     </div>
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="contenedor-footer">
             <p>&copy; @DateTime.Now.Year - Créditos y Negociaciones César</p>
-        </div>        
+        </div>
     </footer>
 
-    @Scripts.Render("~/bundles/jquery")    
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="~/Scripts/script.js"></script>
+    <script type="text/javascript" src="~/Scripts/lightslider.js"></script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/60e144b0649e0a0a5cca6b06/1f9nv8lb8';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <!--LOGIN-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content login-box" style="padding:0 30px 50px">
+                    <button class="close" style="width:20%;margin-bottom:6vh;" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: red;font-size: 52px;">×</span>
+                    </button>
+
+                    @Html.AntiForgeryToken()
+                    <h1 style="color:white;">Iniciar Sesión</h1>
+                    <h1 style="color:white;">Cliente</h1>
+                    <img src="~/img/login.png" class="avatar" alt="Avatar Image">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <form>
+                        <!-- CorreT -->
+                        @Html.EditorFor(model => model.userEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese su correo electrónico", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.userEmail, "", new { @class = "text-danger" })
+                        <!-- USERNAME INPUT -->
+                        @Html.TextBoxFor(model => model.userKey, new { @class = "form-control", placeholder = "Ingrese su contraseña", @type = "password", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.userKey, "", new { @class = "text-danger" })
+                        <!-- PASSWORD INPUT -->
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" name="name" value="Iniciar Sesión" />
+                        </div>
+                    </form>
+                    <p class="nav-link" style="margin:0;"> <a class="to_register" href="#" data-dismiss="modal" data-toggle="modal" data-target="#createUser">¿No posee una cuenta?, ¡REGÍSTRESE!</a></p>
+
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <!--CREAR USUARIO-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content login-box" style="padding:0 30px 50px">
+                    <button class="close" style="width:20%;margin-bottom:6vh;" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: red;font-size: 52px;">×</span>
+                    </button>
+
+                    @Html.AntiForgeryToken()
+                    <h1 style="color:white;">Crear Usuario</h1>
+                    <img src="~/img/login.png" class="avatar" alt="Avatar Image">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <form>
+
+                        @Html.EditorFor(model => model.userEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese email", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.userEmail, "", new { @class = "text-danger" })
+                        <!-- USERNAME INPUT -->
+                        @Html.TextBoxFor(model => model.userKey, new { @class = "form-control", placeholder = "Contraseña", @type = "password", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.userKey, "", new { @class = "text-danger" })
+                        <!-- PASSWORD INPUT -->
+                        @Html.DropDownListFor(model => model.userType,
+                            new SelectList(Enum.GetValues(typeof(PawnshopUnchuMVC.Models.ViewModels.TypeUser))),
+                            "Selecciona un usuario", new { @class = "form-control" })
+                         <br />
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <input type="submit" value="Registrar Usuario" class="btn btn-primary" />
+                        </div>
+                    </form>              
+                </div>
+            </div>
+
+        </div>
+    }
+
 </body>
 </html>

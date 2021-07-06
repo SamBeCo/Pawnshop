@@ -15,7 +15,8 @@ using System.Drawing.Imaging;
 namespace PawnshopUnchuMVC.Controllers
 {
     public class UserController : Controller
-    {        
+    {
+                
         // GET: User
         public ActionResult Index()
         {

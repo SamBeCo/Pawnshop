@@ -31,8 +31,7 @@ namespace PawnshopUnchuMVC.Controllers
         //Página de Login
         public ActionResult Login()
         {
-            
-            return View();
+            return RedirectToAction("Index", "Home");
         }
         //Validación del login
         [HttpPost]
@@ -49,7 +48,7 @@ namespace PawnshopUnchuMVC.Controllers
                 {
                     TempData["Prueba"] = "SI";
                     @ViewData["ID"] = TempData["Prueba"];
-                    return View();                    
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -78,14 +77,14 @@ namespace PawnshopUnchuMVC.Controllers
                         //Pagína de ERROR
                         else
                         {
-                            return View();
+                            return RedirectToAction("Index", "Home");
                         }                        
                     }
                 }
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", "Home");
             }        
         }
         //Página de creación de usuario

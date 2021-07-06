@@ -23,9 +23,22 @@ namespace PawnshopUnchuMVC.Controllers
                 return RedirectToAction("Index", "Home");
             }
             else{
-                @ViewData["ID"] = idUser;
+                DBPawnshopEntitiesConection db = new DBPawnshopEntitiesConection();
+                var data = db.Database.SqlQuery<tblSolicitude>("getNewSolicitudes");
+                var tipos = data.Select(x => x.solID);
+                //Validar si existe información o no
+                if (tipos.FirstOrDefault() != null)
+                {
+                    TempData["Prueba"] = "SI";
+                    @ViewData["ID"] = TempData["Prueba"];
+                }
+                else
+                {
+                    TempData["Prueba"] = null;
+                    @ViewData["ID"] = TempData["Prueba"];
+                }
+                return View();
             }            
-            return View();
         }
         //Clase de cerrar sesión
         public ActionResult Logout()
