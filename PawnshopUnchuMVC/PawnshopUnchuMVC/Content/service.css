@@ -1,0 +1,120 @@
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    
+  }
+  
+  body{
+    background-color: #eee;
+    font-family: 'Open Sans', sans-serif;
+    background: url(fondo1.jpg) no-repeat center top;
+  }
+  /*index*/
+  nav.contenedorMenu{
+    height: 90px;
+    width: 90%;
+    margin: auto;
+    overflow:hidden ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+nav  a{
+  color: rgb(255, 253, 253);
+  text-shadow: 2px 2px 2px rgb(14, 14, 14);
+  font-weight: 300;
+  text-decoration: none;
+  margin-right: 10px;
+  font-size: 16px;
+  padding: 10px 10px ;
+
+}
+
+/*container*/
+.container-2 {
+    width: 90%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 30px;
+}
+  /*container*/
+  
+  
+  .item{
+
+    background-color: rgba(231, 213, 213, 0.822);
+    cursor: pointer;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.095);
+    
+    transition: all 300ms;
+    
+    position: relative;
+
+  }
+  
+  
+  .item::after {
+    content: "";
+    background-color: rgba(179, 229, 252, .1);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    transform: scale(0);
+    transition: all 300ms;
+    opacity: 0;
+  }
+  
+  .item:hover:after{
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .item:hover {
+    transform: scale(1.05);
+  }
+  
+  .item-text{
+      display:flex;
+      justify-content:center;
+    padding: 1em;
+  }
+  
+  
+  .item-img{
+    width: 100%;
+    height:30vh;
+    display: block;
+  }
+  
+  
+  @media screen and (min-width: 590px) {
+    
+    .container-2{
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+  }
+  
+  
+  
+  @media screen and (min-width: 960px) {
+    
+    .container-2{
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+  }
+  .item-text h3{
+      margin:0;
+  }
